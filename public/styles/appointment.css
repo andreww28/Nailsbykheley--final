@@ -1,0 +1,409 @@
+.banner {
+    padding-inline: 5em;
+  padding-block: 80px;
+  background-image:
+    linear-gradient(to bottom, rgba(21, 21, 21, 0.374), rgba(0, 0, 0, 0.763)),
+    url('../assets/img/banner-apt.jpg');
+    width: 100%;
+    height: 20em;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    color: var(--font-white);
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-content p {
+    width: 100%;
+    max-width: 64ch;
+    text-align: center;
+}
+
+section.main-content {
+    padding: 2em;
+    background-color: var(--dark-bg);
+    color: var(--font-white);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    height: 100%;
+}
+
+.tab-section {
+    display: flex;
+    background-color:var(--dark-grey);
+    position: sticky;
+    top: 80px;
+    z-index: 5;
+}
+
+.tab-section div {
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: all 0.4s;
+    font-size: var(--small);
+}
+
+.tab-section div:hover {
+    background-color:var(--pink-light);
+}
+
+.tab-section div:first-child {
+    background-color: var(--primary-color);
+}
+
+.book-apt-placeholder {
+    margin-top: 2em;
+    height: 100%;
+    min-height: 20em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-apt-placeholder p {
+    width: 100%;
+    max-width: 36ch;
+    text-align: center;
+}
+
+.book-apt-placeholder button {
+    background-color: var(--primary-color);
+    padding: 0.5em 1em;
+    color: var(--font-white);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: var(--small);
+}
+
+
+.view-appointment-login, .view-appointment-login form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.view-appointment-login {
+    display: none;
+}
+
+.view-appointment-login form {
+    gap: 1em;
+    width: 100%;
+}
+
+.view-appointment-login > p {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.view-appointment-login form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;    
+}
+
+.view-appointment-login form > div label {
+    font-size: var(--small);
+}
+
+.view-appointment-login form input {
+    background-color: transparent;
+    outline-color: var(--dark-grey);
+    border: 2px solid var(--dark-grey);
+    width: 100%;
+    padding: 0.5em 1em;
+    color: var(--font-dark);
+    border-radius: 10px;
+}
+
+.view-appointment-login form button, .all-apt-info button {
+    padding: 0.5em 1em;
+    background-color: var(--primary-color);
+    color: var(--font-white);
+    outline-color: var(--primary-color);
+    border: 3px solid var(--dark-grey);
+    border-radius: 20px;
+    cursor:  pointer;
+    align-self: flex-end;
+}
+
+
+
+.all-apt-info {
+    font-family: var(--body-font);
+    background-color: var(--dark-grey);
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    border-radius: 10px;
+    font-size: var(--small);
+    width: 100%;
+    max-width: 50em;
+    display: none;
+}
+
+.all-apt-info button {
+    background-color: red;
+    align-self: flex-start;
+}
+
+.all-apt-info .imp-info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: start;
+}
+
+.all-apt-info .imp-info h6 {
+    color: var(--font-white);
+}
+
+.all-apt-info .imp-info h6 span {
+    color: red;
+}
+
+#logout-btn {
+    justify-self: end;
+}
+
+
+.all-apt-info div .content  {
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em 1em;
+}
+
+.all-apt-info div .content p:nth-child(odd) {
+    width:100%;
+    max-width: 36ch;
+    min-width: 24ch;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 858px) {
+    .banner {
+        margin-top: 80px;
+        padding-inline: 1em;
+    }
+}
+
+@media (max-width: 483px) {
+    section.main-content {
+        padding: 1em;
+    }
+    .all-apt-info {
+        gap: 1em;
+    }
+
+    .all-apt-info div .content {
+        grid-template-columns: 1fr;
+        gap: 0em;
+    }
+
+    .all-apt-info div .content p:nth-child(even) {
+        margin-bottom: 1em;
+        font-style: italic;
+        font-weight: 700;
+    }
+}
+
+
+
+.submit-popup {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    background-color: rgba(0, 0, 0, 0.744);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    display: none;
+}
+
+.submit-popup-content {
+    width: 100%;
+    max-width: 40em;
+    background-color: var(--dark-grey);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-size: var(--small);
+    color: var(--font-white);
+}
+
+#appt-val, #v-code-val {
+    font-size: var(--body);
+    color: var(--primary-color);
+    cursor: pointer;
+} 
+
+.confirm-div-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.confirm-div-info > p:first-child {
+    color: var(--primary-color);
+    font-size: var(--body);
+}
+
+.important-info {
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+}
+
+.important-info p i {
+    font-size: 0.8rem;
+}
+
+.important-info p:last-child {
+    grid-column: 2/3;
+}
+
+.submit-popup-content details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+details summary {
+    font-size: var(--h6-desktop);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+details summary:hover {
+    color: var(--font-white);
+}
+
+.gcash-info {
+    margin-top: 1em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.gcash-info > p:first-child {
+    color: var(--primary-color);
+}
+
+.gcash-info-content {
+    align-self: center;
+    margin: auto;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.info-gcash {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.gcash-info-content img {
+    width: 10em;
+    aspect-ratio: 1/1;
+    grid-row: 1/3;
+}
+
+#ok-btn-submit-popup {
+    padding: 0.5em 1em;
+    background-color: var(--primary-color);
+    color: var(--font-white);
+    outline: none;
+    border: 2px solid var(--pink-light);
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+    align-self: flex-start;
+}
+
+
+/* TOAST  */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 9999999; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }

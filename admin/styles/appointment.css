@@ -1,0 +1,68 @@
+body {
+    color: var(--grey-color);
+}
+
+h4 {
+    font-family: "Cormorant Upright", serif;
+    font-weight: 700;
+    font-size: 10rem;
+}
+
+.active2 {
+    background-color: #ff74ab;
+}
+
+.main-content {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+#new-btn {
+    margin-bottom: 1em;
+    padding: 0.5em 1em;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#new-btn:hover {
+    background-color: #E697B6;
+}
+
+.action-cell {
+    display: flex;
+    gap: 3px;
+}
+
+td button {
+    padding: 0.25em 0.5em;
+    color: var(--white-color);
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+}
+
+#new-btn,
+td button {
+    color: var(--font-white);
+    font-size: inherit;
+}
+
+
+.view-btn {
+    background: green;
+}
+
+.check-btn {
+    background-color: var(--primary-color)
+}
+
+.x-btn {
+    background-color: red;
+}

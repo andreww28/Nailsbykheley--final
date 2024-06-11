@@ -1,0 +1,254 @@
+
+.main-calendar{
+    background-color: red;
+}
+
+.calendar-object{
+    width: 100%;
+}
+
+.calendar-container {
+    padding-block: 3em;
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 40em);
+    min-width: 31.25em;
+    justify-content: center;
+    gap: 1em;
+}
+
+.calendar-header {
+    display:flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendar-current-date {
+    font-size: 1.1rem;
+}
+
+.calendar-body {
+    display:flex;
+    flex-direction: column;
+}
+
+.calendar-body ul li {
+    list-style-type: none;
+    padding: 0.5em;
+    width: min(100%,5em);
+}
+
+.calendar-weekdays, .calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center;
+    align-items: center;
+    grid-gap: 0.5em;
+    
+}
+
+.calendar-weekdays li {
+    color: rgb(255, 101, 206);
+}
+
+
+.calendar-dates li:not(.empty) {
+    aspect-ratio: 1/1;
+    border: 1px solid rgb(58, 58, 58);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.valid {
+    cursor:pointer;
+    background: rgba(123, 123, 123, 0.052);
+    color:rgb(28, 28, 28);
+}
+
+.valid:hover {
+    background-color: rgb(250, 164, 223);
+    transition: 0.2s all ease-in;
+}
+
+
+.active-day {
+    background-color: rgb(255, 101, 206);
+}
+
+.inactive {
+    background-color: rgba(92, 92, 92, 0.623);
+    color:rgb(102, 102, 102);
+}
+
+
+.status-div {
+    align-self: flex-end;
+    display: flex;
+    gap: 0.5em;
+}
+
+.status {
+    width: 0.5em;
+    aspect-ratio: 1/1;
+    background: green;
+    border-radius: 50%;
+}
+
+.pending {
+    background-color: red;
+}
+
+.full-slot {
+    background-color: rgb(47, 47, 47);
+}
+
+.calendar-weekdays ul li {
+
+}
+
+.legend {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.legend > div {
+    display: flex;
+    gap: 0.3em;
+    align-items: center;
+    font-size: var(--small);
+    color: var(--font-dark);
+}
+
+.legend > div > div {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+}
+
+.pending-lg div {
+    background: red;
+}
+
+.confirmed-lg div {
+    background-color: green;
+}
+
+.fullslot-lg div {
+    background-color: rgb(47, 47, 47);
+}
+
+.empty {
+    background: none;
+    border:none;
+    outline: none;
+}
+
+
+.c-content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 1em;
+}
+
+.appt-view-container {
+    margin-block: 3em;
+    background-color: var(--font-white);
+    width: 100%;
+    max-width: 25em;
+    /* border: 1px solid rgb(216, 216, 216); */
+    height: 100%;
+    color: var(--font-dark);
+
+}
+
+.date-container {
+    background: var(--primary-color);
+    padding: 0.5em;
+}
+
+.date-container h5 {
+    color: var(--font-white);
+
+}
+
+.appt-view-container > h6 {
+    padding: 0.5em;
+    border-bottom: 1px solid #D6D6D6;
+}
+
+.appt-list{
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+    height: 25em;
+    align-content: start;
+}
+
+.appt-item{
+    padding: 0.5em;
+    border-bottom: 1px solid #D6D6D6;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.appt-item:hover {
+    background-color: rgb(219, 219, 219);
+}
+
+
+.appt-item-info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+
+.appt-item-info p:not(:first-child) {
+    font-size: var(--small);
+}
+
+.appt-item-info p:first-child {
+    color: var(--primary-color);
+}
+
+.appt-item-status {
+    background-color: red;
+    color: var(--font-white);
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    font-size: 0.6rem;
+    align-self: flex-start;
+}
+
+@media (max-width: 532px) {
+    .status-div {
+        flex-wrap: wrap;
+        gap:0;
+    }
+}
+
+@media (max-width: 1106px) {
+    .c-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .calendar-container  {
+        min-width: 20em;
+        padding-bottom: 0.5em;
+    }
+
+    .appt-view-container {
+        max-width: 100%;
+        margin-block: 0;
+    }
+
+    .appt-list {
+        height: 100%;
+        min-height: 10em;
+        max-height: 25em;
+    }
+}

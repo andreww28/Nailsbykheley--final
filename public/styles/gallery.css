@@ -1,0 +1,219 @@
+
+/* Banner */
+ .banner {
+  width: 100%;
+  padding: 6em 2em;
+  background-size: 100%;
+  background-size: cover;
+  /* background-color: var(--dark-bg); */
+  background-image: linear-gradient(to bottom, #000000db, #00000092, #545454d0),url("../assets/img/service-banner.jpg");
+  background-position: center;
+}
+
+.banner-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-white);
+}
+
+.banner-content > p {
+  width: 100%;
+  max-width: 64ch;
+  text-align: center;
+}
+
+.banner-content > h2 {
+  text-align: center;
+  width: 100%;
+  max-width: 24ch;
+}
+
+/* Style the search box  */
+input[type=search] {
+  padding: 0.5em 1em;
+  width: 100%;
+  border:5px var(--font-white);
+  font-size: 17px;
+  margin: 0 auto;
+  display: block;
+  background-color: transparent;
+  border-radius: 10px;
+  color:var(--font-dark);
+  margin-block: 0.5em;
+}
+::placeholder {
+  color: var(--font-dark);
+  opacity: 1; 
+}
+
+input[type="search"]:focus {
+  background: none;
+  outline:none;
+  border:none;
+}
+
+.custom-select {
+  
+}
+
+.input-container {
+  display: flex;
+  gap: 0.4em;
+  background-color: var(--white-bg);
+  align-items: center;
+  border-radius: 10px;
+  /* padding: 0.5em 1em; */
+  width: 100%;
+  max-width: 40em;
+  border: 2px solid var(--primary-color);
+}
+
+.input-container i {
+  color: var(--font-dark);
+  margin-left: 1em;
+}
+
+select {
+  padding: 1.3em 1em;
+  color: var(--white-bg);
+  color: var(--font-dark);
+  background-color: rgb(208, 208, 208);
+  border-radius: 0 10px 10px 0;
+  border:none;
+}
+
+select:focus {
+  border:none;
+  outline: none;
+}
+
+.no-items-gallery {
+  color: var(--font-white);
+  text-align: center;
+}
+
+/* Main Content */
+
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-bg);
+  background: url('../assets/img/bg-gal.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main-content {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-size: cover;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(15em,1fr));
+  grid-gap: 3em;
+  place-content: center;
+  padding: 5em;
+  max-width: 90em;
+}
+@media only screen and (max-width: 480px) {
+  .main-content {
+    width: 100%;
+  }
+}
+
+/* Img Card */
+.card {
+  width: 20em;
+  background-color: var(--white-bg);
+  height: 25em;
+  border-radius: 1em;
+  box-shadow: 4px 5px 7px -3px rgb(177, 177, 177);
+-webkit-box-shadow: 4px 5px 7px -3px rgb(177, 177, 177);
+-moz-box-shadow: 4px 5px 7px -3px rgb(177, 177, 177);
+  justify-self: center;
+  transition: 0.5s;
+  display: grid;
+  position:relative;
+  overflow: hidden;
+}
+
+
+.card:hover img{
+  transform: translate(-5px, -5px) scale(1.2);
+  overflow: hidden;
+  background-color: var(--white-bg);
+}
+
+
+.card img {
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 1em;
+  transition: all 0.3s ease-in;
+}
+
+
+.caption {
+  padding: 1em;
+  font-family: var(--body-font);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:absolute;
+  width: 100%;
+  bottom: -20px;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(2, 2, 2, 0) 0%, rgba(2, 2, 2, 0.782) 100%);
+  color: var(--font-white);
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+
+.card:hover .caption {
+  opacity: 1;
+  bottom: 0;
+}
+
+.caption p {
+  display: none;
+}
+
+.caption h6 {
+  color: var(--font-white);
+}
+
+/* Appointment */
+.appointment{
+  padding: 6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(rgba(63, 63, 63, 0.437), rgba(0, 0, 0, 0.836)), url("../assets/img/service-banner2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#AptBtn {
+  width: 100%;
+  max-width: 20em;
+  background-color: var(--primary-color);
+  color: var(--font-white);
+  padding: 1em 2em;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: inherit;
+}
+
+#AptBtn:hover {
+  background-color: var(--pink-light);
+}

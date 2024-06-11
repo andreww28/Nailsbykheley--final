@@ -1,0 +1,205 @@
+body {
+    color: var(--font-dark);
+}
+
+.active3 {
+    background-color: #ff74ab;
+}
+
+table {
+    overflow-x: scroll;
+}
+
+.main-content {
+    padding: 2em;
+}
+
+.main-content h4 {
+    margin-bottom: 0.5em;
+}
+
+.content-div {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1em;
+}
+
+.date-content, .time-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: flex-start;
+}
+
+
+.time-action-div, .date-select {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    background-color: var(--white-bg);
+    justify-content: center;
+    padding: 1em;
+    align-items: flex-start;
+}
+
+
+.time-input-div, .date-input-div {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1em;
+}
+
+.time-input-div div, .date-input-div div {
+    display:flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+
+#time-new-btn, #date-new-btn {
+    font-size: var(--small);
+    padding: 0.25em 0.5em;
+    align-self: flex-start;
+    background-color: var(--primary-color);
+    color: var(--font-white);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    cursor: url("../assets/img/cursor.cur"), auto !important;
+}
+
+#time-new-btn:hover, #date-new-btn:hover {
+    background-color: #E697B6;
+}
+
+
+/* date action container */
+.date-action-div {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+}
+
+.filter-date {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white-bg);
+}
+
+.filter-date h6 {
+    background-color: var(--primary-color);
+    color: var(--font-white);
+    padding: 0.2em 0.5em;
+}
+
+.filter-date div {
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+select{ 
+    padding: 0.5em 1em;
+    color: var(--font-dark);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+
+}
+
+table thead tr {
+    color: var(--bg-dark);
+    font-size: var(--body);
+    font-weight: 700;
+    text-align: left;
+}
+
+table th,
+table td {
+    padding: 0.75em 1.5em;
+}
+
+table tr {
+    border-bottom: 2px solid #dddddd;
+    text-wrap: wrap;
+}
+
+table tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+td button {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#new-btn {
+    margin-bottom: 1em;
+    padding: 0.5em 1em;
+    background-color: var(--primary-color);
+    color: var(--font-white);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    cursor: url("../assets/img/cursor.cur"), auto !important;
+}
+
+#new-btn:hover {
+    background-color: #E697B6;
+}
+
+td button {
+    background-color: red;
+    outline: none;
+    padding: 0.5em 1em;
+    color: var(--font-white);
+    border: none;
+}
+
+
+.date-table-wrapper {
+    width: min(100%, 40em);
+}
+
+#date-table{
+    width: 100%;
+}
+
+@media (max-width: 420px) {
+
+    .main-content {
+        padding: 1em;
+    }
+    table tbody td {
+        padding: 1em;
+    }
+}
+
+@media (max-width: 1050px) {
+    .content-div {
+        grid-template-columns: 1fr ;
+        gap: 3em;
+    }
+}

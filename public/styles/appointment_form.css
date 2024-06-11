@@ -1,0 +1,339 @@
+.calendar-btn-div {
+    position: relative;
+}
+
+
+.a-container {
+    background-color: rgba(0, 0, 0, 0.942);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -999;
+        opacity: 0;
+        transform: scale(0);
+}
+
+.a-container h3{
+    line-height: normal;
+}
+
+.form-box {
+    display: flex;
+    border: 2px solid var(--primary-color);
+    width: 100%;
+    max-width: 60em;
+    padding: 2em;
+    height: 100%;
+    max-height: 35em;
+    background-color: var(--dark-bg);
+    border-radius: 10px;
+    gap: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: 0.5s ease;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+}
+
+.form-box > i {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 1.5rem;
+    color: var(--font-white);
+    cursor: pointer;
+}
+
+.a-container form {
+    margin-inline:auto;
+    overflow-y: scroll;
+    width: 100%;
+    max-width: 30em;
+    padding-inline: 1em;
+}
+
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.progress ul.progress-steps {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0em;
+}
+
+
+.progress ul.progress-steps li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.progress ul.progress-steps li > span {
+    position: relative;
+    width: 40px;
+    aspect-ratio: 1/1;
+    font-size: var(--small);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--dark-grey);
+    z-index: 1;
+}
+
+.progress ul.progress-steps li.active > span {
+    color: var(--font-white);
+    background-color: var(--primary-color);
+    border: 4px solid var(--pink-light);
+    z-index: 1;
+    
+}
+
+
+.progress ul.progress-steps li:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    width: 2px;
+    height: 65px;
+    background-color: var(--dark-grey);
+}
+
+
+
+
+.a-container form > div:not(.btn-group) {
+    display: none;
+    animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    --webkit-animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10%);
+        --webkit-transform: translateY(10%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        --webkit-transform: translateY(0);
+    }
+}
+
+.a-container form > div.active {
+    display: flex;
+}
+
+
+
+/* Form 1 */
+.form-step {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form-one > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-one > p, .form-one > div > label {
+    font-size: var(--small);
+}
+
+.form-step input[type="text"], .form-step input[type="tel"] {
+    background-color: transparent;
+    outline-color: var(--dark-grey);
+    border: 2px solid var(--dark-grey);
+    width: 100%;
+    padding: 0.5em 1em;
+    color: var(--font-dark);
+    border-radius: 10px;
+}
+
+
+
+.form-two {
+    gap: 2em;
+}
+
+.form-two .specify-div {
+    margin-top: 0.5em;
+    display:none;
+}
+.radio-div  > div, .radio-div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5em;
+}
+
+.radio-div {
+    gap: 2em;
+}
+
+.m-conditions-container, .n-conditions-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em 0.5em;
+}
+
+.m-conditions-container .checkbox-div, .n-conditions-container .checkbox-div {
+    display: grid;
+    grid-template-columns: 10px 1fr;
+    align-items: center;
+    column-gap: 0.5em;
+}
+
+
+.btn-group {
+    display: flex;
+    gap: 0.5em;
+    margin-top: 2em;
+}
+
+.btn-group button {
+    padding: 0.5em 1em;
+    background-color: var(--primary-color);
+    color: var(--font-white);
+    outline-color: var(--primary-color);
+    border: 3px solid var(--dark-grey);
+    border-radius: 20px;
+    cursor:  pointer;
+}
+
+.btn-group button:disabled {
+    cursor: text;
+    background-color: var(--dark-grey);
+}
+
+.btn-group button:hover:not(:disabled) {
+    background: var(--pink-light);
+}
+
+.btn-group .btn-submit {
+    display: none;
+}
+
+.a-container .form-three.active ~ .btn-group .btn-submit {
+    display: block;
+}
+
+
+.form-three {
+    gap: 2em;
+}
+
+.form-three .service-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width:100%;
+    max-width: 10em;
+}
+
+.form-three #service {
+    padding: 0.5em;
+    background-color: var(--dark-grey);
+    color: var(--font-white);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-three #select-date-btn {
+    background-color: var(--dark-grey);
+    color: var(--font-white);
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
+
+.form-three #timeRadioButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: flex-start;
+    
+}
+
+.form-three #timeRadioButtons div  {
+    display: grid;
+    grid-template-columns: 10px 1fr;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 1em;
+}
+
+.form-three #timeRadioButtons div.time-valid {
+    color: var(--font-white);
+}
+
+.form-three #timeRadioButtons div.time-invalid {
+    color: red;
+}
+
+.form-three .error-msgg {
+    color: red;
+    font-size:  var(--small);
+    margin-top: 0.3em;
+    display: none;
+}
+
+@media (max-width: 660px) {
+    .form-box {
+        flex-direction: column;
+    }
+
+    .progress ul.progress-steps {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: start;
+        justify-items: center;
+        font-size: var(--small);
+    }
+
+    .progress ul.progress-steps li {
+        display: grid;
+        grid-template-columns: 1fr ;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        grid-gap: 0.5em;
+    }
+
+    .progress ul.progress-steps li:not(:last-child)::before {
+        content: '';
+        width: 0;
+        height: 0;
+    }
+
+    .form-box {
+        max-height: 45em;
+        padding: 2em 1em;
+    }
+
+    .m-conditions-container, .n-conditions-container {
+        grid-template-columns: 1fr 1fr;
+        grid-row-gap: 1em;
+    }
+
+}

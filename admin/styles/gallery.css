@@ -1,0 +1,261 @@
+body {
+    color: var(--grey-color);
+}
+
+.active4 {
+    background-color: #ff74ab;
+}
+
+.main-content {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+
+#new-btn:hover {
+    background-color: #E697B6;
+}
+
+.action-cell {
+    display: flex;
+    gap: 3px;
+}
+
+.action-cell button {
+    padding: 0.25em 0.5em;
+    color: var(--white-color);
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+.image-gallery {
+    width: 5em;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+button span, button i{
+    color: var(--font-white);
+}
+
+#image-btn {
+    color: var(--font-white);
+    background: var(--primary-color);
+}
+
+
+/* modal */
+.modall {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color:#000000c9;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.modall .modal-wrapper-gallery {
+    width: 100%;
+    max-width: 23em;
+    background-color: var(--dark-bg);
+    position: relative;
+    padding: 2em;
+    color: var(--font-white);
+}
+
+#close-modal-btn {
+    position:absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+}
+
+.modall .modal-wrapper-gallery h5 {
+    margin-bottom: 1em;
+}
+
+.modall .modal-active{
+    visibility: visible;
+    opacity: 1;
+}
+
+.modall .modal-wrapper-gallery form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.modall .modal-wrapper-gallery form div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modall .modal-wrapper-gallery form div label {
+    font-size: var(--small);
+}
+
+
+
+#title, #themes {
+    color: var(--font-dark);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+}
+
+#title {
+    width: 100%;
+}
+
+#update-data-btn {
+    display: none;
+}
+
+#new-btn, #edit-btn, #remove-btn {
+    margin-bottom: 1em;
+    padding: 0.5em 1em;
+    color: var(--white-color);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modall form h6, #error-msg {
+    font-size: var(--small);
+    color: #da7096;
+    font-family: var(--body-font);
+    display: none;
+    font-weight: 300;
+}
+
+
+#image-btn {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow:hidden;
+    position:absolute;
+    z-index: -1;
+    align-self: flex-start;
+}
+
+#image-btn + label {
+    font-size: var(--small);
+    background-color: var(--primary-color);
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#image-btn:focus + label, #image-btn + label:hover {
+    background-color: var(--pink-light);
+}
+
+#image-preview {
+    width: 5em;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+#update-data-btn, #add-data-btn {
+    padding: 0.5em 1em;
+    background-color: var(--primary-color);
+    color: var(--font-white);
+    font-family: var(--inherit);
+    outline:none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#update-data-btn:hover, #add-data-btn:hover {
+    background-color: var(--pink-light);
+}
+
+
+.custom-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.action-btn button {
+    margin-bottom: 1em;
+    padding: 0.5em 1em;
+    color: var(--font-white);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.action-btn button span {
+    font-size: var(--small);
+}
+
+.selection-control button {
+    font-size: var(--small);
+    padding: 0.5em 1em;
+    background-color: var(--dark-bg);
+    color: var(--font-white);
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+#new-btn {
+    background-color: var(--primary-color);
+}
+
+#new-btn:hover {
+    background-color: #E697B6;
+}
+
+#edit-btn {
+    background: green;
+}
+
+#edit-btn:hover {
+    background-color: rgb(24, 175, 24);
+}
+
+#remove-btn {
+    background-color: red;
+}
+
+#remove-btn:hover {
+    background-color: rgb(255, 80, 80);
+}
+
+
+@media (max-width: 940px) {
+    .custom-control {
+        flex-direction: column;
+    }
+
+    .custom-control:first-child {
+        display: flex;
+        justify-content: space-between;
+        gap: 1em;
+    }
+
+    .main-content {
+        padding: 1em;
+    }
+}

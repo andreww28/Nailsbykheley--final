@@ -1,0 +1,66 @@
+body {
+    color: var(--grey-color);
+}
+
+.active1 {
+    background-color: #ff74a7;
+}
+
+.main-content {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+#date-filter{
+    padding: 0.5em 1em;
+    color: var(--font-dark);
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    grid-gap: 1em;
+
+}
+
+.summary .filter {
+    grid-column: 1/-1;
+}
+
+.box-summary {
+    display: grid;
+    grid-template-columns: 1fr minmax(1fr, 6em);
+    background-color: #D9D9D9;
+    padding: 1em;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--font-white);
+    cursor: pointer;
+}
+
+.box-summary.box1{
+    background-color: var(--primary-color);
+}
+
+.box-summary.box2{
+    background-color: green;
+}
+
+.box-summary.box3{
+    background-color: var(--dark-bg);
+}
+
+.box-summary .val {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.box-summary i {
+    grid-area: 1/2/3/3;
+    font-size: 56px;
+    color:var(--font-white);
+}

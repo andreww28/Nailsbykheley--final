@@ -1,0 +1,126 @@
+
+.active2 {
+    background-color: #ff74ab;
+}
+
+.main-content {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+#example {
+    width: 100%;
+    color:var(--font-dark);
+    font-size: 0.9rem;
+}
+
+#example th {
+    color: red;
+}
+
+.custom-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-filter-control {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(1fr, 11em));
+    grid-gap: 1em 0.5em;
+    justify-items: center;
+    color: var(--font-dark);
+}
+
+.custom-filter-control > p {
+    grid-column: 1/3;
+}
+
+.custom-filter-control div {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.custom-filter-control div input {
+    border: 2px solid var(--primary-color);
+    font-size: var(--small);
+    padding: 0.5em;
+    color: var(--font-dark);
+}
+
+.action-btn button {
+    margin-bottom: 1em;
+    padding: 0.5em 1em;
+    color: var(--font-white);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.action-btn button span {
+    font-size: var(--small);
+}
+
+.selection-control button {
+    font-size: var(--small);
+    padding: 0.5em 1em;
+    background-color: var(--dark-bg);
+    color: var(--font-white);
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+#new-btn {
+    background-color: var(--primary-color);
+}
+
+#new-btn:hover {
+    background-color: #E697B6;
+}
+
+
+#view-btn {
+    background: green;
+}
+
+#confirm-btn {
+    background-color: var(--pink-light)
+}
+
+#remove-btn {
+    background-color: red;
+}
+
+#view-btn:hover {
+    background-color: rgb(17, 190, 17);
+}
+
+#confirm-btn:hover {
+    background-color: var(--pink-light);
+}
+
+#remove-btn:hover {
+    background-color: rgb(255, 116, 116) ;
+}
+
+@media (max-width: 940px) {
+    .custom-control {
+        flex-direction: column;
+    }
+
+    .custom-control:first-child {
+        display: flex;
+        justify-content: space-between;
+        gap: 1em;
+    }
+
+    .main-content {
+        padding: 1em;
+    }
+}
