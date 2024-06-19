@@ -2,7 +2,7 @@
 /* Banner */
  .banner {
   width: 100%;
-  padding: 6em 2em;
+  padding: 5em 2em;
   background-size: 100%;
   background-size: cover;
   /* background-color: var(--dark-bg); */
@@ -71,6 +71,8 @@ input[type="search"]:focus {
   width: 100%;
   max-width: 40em;
   border: 2px solid var(--primary-color);
+  position: sticky;
+  top: 80px;
 }
 
 .input-container i {
@@ -104,23 +106,25 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--dark-bg);
-  background: url('../assets/img/bg-gal.jpg');
+  background: rgb(125,56,83);
+  background: linear-gradient(0deg, rgba(125,56,83,1) 0%, rgba(39,39,39,1) 100%); 
   background-repeat: no-repeat;
   background-size: cover;
 }
 .main-content {
   width: 100%;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-size: cover;
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(15em,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20em,1fr));
   grid-gap: 3em;
-  place-content: center;
+  justify-items: center;
   padding: 5em;
   max-width: 90em;
 }
+
+
+
+
+
 @media only screen and (max-width: 480px) {
   .main-content {
     width: 100%;
@@ -204,8 +208,6 @@ select:focus {
 }
 
 #AptBtn {
-  width: 100%;
-  max-width: 20em;
   background-color: var(--primary-color);
   color: var(--font-white);
   padding: 1em 2em;
@@ -216,4 +218,27 @@ select:focus {
 
 #AptBtn:hover {
   background-color: var(--pink-light);
+}
+
+
+@media (max-width: 858px){ 
+  .banner {
+    padding-inline: 1em;
+    padding-block: 2em;
+    padding-top: calc(80px + 2em);
+  }
+
+  .main-content {
+    grid-template-columns: repeat(auto-fit, minmax(10em,1fr));
+    padding: 1em;
+    grid-gap: 1em;
+    height: 100%;
+    min-height: 24.5em;
+    overflow: auto;
+  }
+
+  .card {
+    width: 10em;
+    height: 15em;
+  }
 }

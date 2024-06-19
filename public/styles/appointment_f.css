@@ -165,12 +165,11 @@
     border-radius: 10px;
 }
 
-#payment {
-    align-self: flex-start;
-    padding: 0.5em 1em;
-    background-color: var(--dark-grey);
-    color: var(--font-white);
-    border-radius: 5px;
+.payment-div {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1em;
+    font-size: var(--small);
 }
 
 
@@ -307,6 +306,8 @@
 @media (max-width: 660px) {
     .form-box {
         flex-direction: column;
+        gap: 1em;
+        padding: 0em;
     }
 
     .progress {
@@ -316,10 +317,9 @@
     .progress ul.progress-steps {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        align-items: start;
         justify-items: center;
         font-size: var(--small);
-        align-items: center;
+        align-items: start;
     }
 
     .progress ul.progress-steps li {
@@ -335,10 +335,6 @@
         content: '';
         width: 0;
         height: 0;
-    }
-
-    .form-box {
-        padding: 2em 1em;
     }
 
     .m-conditions-container, .n-conditions-container {

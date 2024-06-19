@@ -13,29 +13,29 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
     <style>
-        .dp-menu form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4em;
-        }
+    .dp-menu form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4em;
+    }
 
-        .dp-menu form button {
-            display: flex;
-            gap: 1em;
-            color: var(--white-color);
-            background-color: transparent;
-            border: none;
-            outline: none;
-            align-items: center;
-            font-size: 0.8rem;
-            color: inherit;
-            font-family: inherit;
-            cursor: pointer;
-        }
+    .dp-menu form button {
+        display: flex;
+        gap: 1em;
+        color: var(--white-color);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        align-items: center;
+        font-size: 0.8rem;
+        color: inherit;
+        font-family: inherit;
+        cursor: pointer;
+    }
 
-        .dp-menu form button:hover {
-            color: var(--light-pink);
-        }
+    .dp-menu form button:hover {
+        color: var(--light-pink);
+    }
     </style>
 </head>
 
@@ -94,7 +94,7 @@
 
                 <div class="dp-menu">
                     <p>Admin</p>
-                    <form action=<?php echo $_SERVER["PHP_SELF"] ?> method="post">
+                    <form action=<?php echo $_SERVER['PHP_SELF'] ?> method="post">
                         <button type="button" id="change-pass-btn">
                             <i class='bx bxs-lock-open-alt'></i>
                             <p>Change Password</p>

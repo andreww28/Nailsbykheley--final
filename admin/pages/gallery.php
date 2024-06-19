@@ -8,6 +8,11 @@ if (!isset($_SESSION['username'])) {
     exit(); // Exit to prevent further execution
 }
 
+if (isset($_POST["logout"])) {
+    session_destroy();
+    header('location: login.php');
+}
+
 include("../sections/admin_nav.php");
 include("../../utils/connection.php");
 

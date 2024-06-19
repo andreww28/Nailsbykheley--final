@@ -37,11 +37,11 @@ include("../sections/admin_nav.php");
                         <div class="action-btn">
                             <button id="confirm-btn">
                                 <i class="fas fa-check"></i>
-                                <span>Compeleted</span>
+                                <span>Mark as done</span>
                             </button>
                             <button id="remove-btn">
                                 <i class="fas fa-trash"></i>
-                                <span>Cancelled</span>
+                                <span>Cancel Booking</span>
                             </button>
                             <button id="view-btn">
                                 <i class="fas fa-eye"></i>
@@ -114,31 +114,27 @@ include("../sections/admin_nav.php");
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
 
     <script>
-    const confirm_btn = document.getElementById('confirm-btn');
-    const remove_btn = document.getElementById('remove-btn');
+        const confirm_btn = document.getElementById('confirm-btn');
+        const remove_btn = document.getElementById('remove-btn');
 
-    Init_APPT.set_current_status("confirmed");
-    var table = Table_functions.init_table('#example', "../../api/fetch_appointment.php");
-    // Table_functions.set_var_table(table);
-    Table_functions.addEvents(table);
-    Table_functions.set_var_table(table);
+        Init_APPT.set_current_status("confirmed");
+        var table = Table_functions.init_table('#example', "../../api/fetch_appointment.php");
+        // Table_functions.set_var_table(table);
+        Table_functions.addEvents(table);
+        Table_functions.set_var_table(table);
 
-    if (localStorage.getItem('selected_appt')) {
-        table.search(localStorage.getItem('selected_appt')).draw();
-    }
+        var queryParams = new URLSearchParams(window.location.search);
+        var parameterValue = queryParams.get('param');
+        if (parameterValue) {
+            table.search(parameterValue).draw();
+        } // Output: "exampleValue"
 
-    var queryParams = new URLSearchParams(window.location.search);
-    var parameterValue = queryParams.get('param');
-    if (parameterValue) {
-        table.search(parameterValue).draw();
-    } // Output: "exampleValue"
-
-    history.replaceState({}, document.title, window.location.pathname);
-    console.log(Init_APPT.get_current_status());
-    confirm_btn.addEventListener('click', () => Custom_Controls.confirm_btn_event("complete_confirmed",
-        "Are you sure you're done with this appointment?"));
-    remove_btn.addEventListener('click', () => Custom_Controls.remove_btn_event("delete_confirmed",
-        "Are you sure you want to cancel this appointment? This action cannot be undone."));
+        history.replaceState({}, document.title, window.location.pathname);
+        console.log(Init_APPT.get_current_status());
+        confirm_btn.addEventListener('click', () => Custom_Controls.confirm_btn_event("complete_confirmed",
+            "Are you sure you're done with this appointment?"));
+        remove_btn.addEventListener('click', () => Custom_Controls.remove_btn_event("delete_confirmed",
+            "Are you sure you want to cancel this appointment? This action cannot be undone."));
     </script>
 
 </body>

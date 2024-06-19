@@ -12,6 +12,8 @@ var imp_text = document.querySelectorAll('#appt-val .val, #v-code-val .val');
 var submit_ok_btn = document.querySelector('#ok-btn-submit-popup');
 
 document.addEventListener("DOMContentLoaded", function() { 
+    console.log(imp_text);
+    
     console.log("hl");
     Request.check_session('tnc_agree');
     APPT_Utils.book_containers_state();
@@ -49,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     })
 
-    console.log(imp_text)
     imp_text.forEach(el => {
         el.addEventListener('click', APPT_Utils.copy_text)
     })
@@ -90,30 +91,35 @@ const APPT_Utils = (function() {
         var {address, allergicReaction, appointment_date, conditionId, email, end_time, first_time, fullName, hasAllergic, isParticipatedSport, medicalCondition, mnumber, nailCondition, referenceNum, service, sportName, start_time, status, submission_time, userId, verification_code} = data;
 
         var array_value = [
-            appointment_date, `${convertTo12HourFormat(start_time)} - ${convertTo12HourFormat(end_time)}`, service, capitalizeFirstLetter(fullName), address, `${email ? email : 'N/A'}`, mnumber, capitalizeFirstLetter(first_time), `${capitalizeFirstLetter(hasAllergic)} ${allergicReaction ? ', ' + allergicReaction : ''}`, `${capitalizeFirstLetter(isParticipatedSport)} ${sportName ? ', ' + capitalizeFirstLetter(sportName) : ''}`, medicalCondition, nailCondition
+            appointment_date, `${convertTo12HourFormat(start_time)} - ${convertTo12HourFormat(end_time)}`, service, capitalizeFirstLetter(fullName), address, `${email ? email : 'N/A'}`, mnumber, capitalizeFirstLetter(first_time), `${capitalizeFirstLetter(hasAllergic)} ${allergicReaction ? ', ' + allergicReaction : ''}`, `${capitalizeFirstLetter(isParticipatedSport)} ${sportName ? ', ' + capitalizeFirstLetter(sportName) : ''}`, `${medicalCondition ? medicalCondition : 'N/A'}`, `${nailCondition ? nailCondition : 'N/A'}`
         ]
 
         
         document.querySelector('.imp-info h5').textContent = referenceNum;
-        document.querySelector('.imp-info h6 span').textContent = status;
-        if(status === 'pending') {
-            document.querySelector('.imp-info h6 span').style.color = 'red';
-        }else if(status === 'confirmed') {
+        document.querySelector('.imp-info h6 span').textContent = capitalizeFirstLetter(status);
+        if(status === 'pending' || status === 'cancelled') {
+            document.querySelector('.imp-info h6 span').style.color = '#fa5757';
+        }else if(status === 'confirmed' || status === 'completed') {
             document.querySelector('.imp-info h6 span').style.color = 'green';
         }
         
         document.querySelectorAll('.all-apt-info > div > .content >p:nth-child(even)').forEach((el, index) => {
             el.textContent = array_value[index];
-        })
+        });
         
         view_apt_login.style.display = 'none';
         all_apt_info.style.display = 'flex';
 
         console.log(status);
 
-        document.querySelector('.all-apt-info > button').addEventListener('click', () => Init.cancelBooking(data));
         logout_btn.addEventListener('click', () => Init.logout());
-        Request.set_session('view_login', JSON.stringify(data));
+
+        if(status === 'pending' || status === 'confirmed') {
+            document.querySelector('.all-apt-info > button').style.display = 'block';
+            document.querySelector('.all-apt-info > button').addEventListener('click', () => Init.cancelBooking(data));
+        }if(status === 'completed' || status === 'cancelled') {
+            document.querySelector('.all-apt-info > button').style.display = 'none';
+         }
 
     }
     
@@ -136,7 +142,10 @@ const APPT_Utils = (function() {
             }else {
                 view_apt_login.style.display = 'none';
                 all_apt_info.style.display = 'flex';
-                display_appt_data(JSON.parse(data));
+                // display_appt_data(JSON.parse(data));
+                const f = new FormData();
+                f.append('action', 'view_again');
+                Request.request_submit(f);
             }
         }
     }
@@ -152,7 +161,9 @@ const APPT_Utils = (function() {
 
     async function copy_text(e) {
         try {
-            await navigator.clipboard.writeText(e.target.textContent);
+            var txt = e.target.textContent;
+            console.log(txt);
+            await navigator.clipboard.writeText(txt);
             console.log('Content copied to clipboard');
 
             var x = document.getElementById("snackbar");
@@ -166,7 +177,7 @@ const APPT_Utils = (function() {
             console.error('Failed to copy: ', err);
           }
     }
-
+    
     return {
         display_appt_data,
         change_form_state,
@@ -222,6 +233,10 @@ const Init = (function() {
             all_apt_info.style.display = 'none';
             view_apt_login.style.display = 'flex';
             view_form_login.reset();
+
+            document.querySelectorAll('.all-apt-info > div > .content >p:nth-child(even)').forEach((el, index) => {
+                el.textContent = '';
+            });
         })
     }
 
@@ -330,6 +345,10 @@ const Request = (function() {
         console.log('fhjfsdhjksdf')
         event.preventDefault();
         const formData = new FormData(view_form_login);
+        request_submit(formData);
+    }
+
+    function request_submit(data) {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', '../../api/view_appointments.php', true);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -348,7 +367,7 @@ const Request = (function() {
                 }
             }
         }
-        xhr.send(formData);
+        xhr.send(data);
     }
 
     function setCancelStatus(data, action) {
@@ -382,7 +401,7 @@ const Request = (function() {
     }
 
     function notification_add_cancel(refNo) {
-        const title = "Cancel Appointment";
+        const title = "Appointment Cancellation";
         const msg = `${refNo} cancelled his/her appointment.`
 
         const xhr = new XMLHttpRequest();
@@ -445,7 +464,8 @@ const Request = (function() {
         unset_session,
         check_session,
         submitData,
-        setCancelStatus
+        setCancelStatus,
+        request_submit
     }
 })();
 

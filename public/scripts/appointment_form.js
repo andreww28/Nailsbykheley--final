@@ -220,6 +220,29 @@ const Form_Calendar = (function() {
         xhr.send('date=' + date);
     }
 
+    function req_get_off_days() {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '../../api/update_calendar_form.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    try {
+                        const response = JSON.parse(xhr.responseText);
+                        resolve(response);
+                    } catch (e) {
+                        reject(e);
+                    }
+                } else {
+                    reject(new Error('Request failed with status ' + xhr.status));
+                }
+            };
+
+            xhr.send('action=get_off_days');
+        })
+    }
+
     function checkIfDayFullSlot(month) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
@@ -283,7 +306,8 @@ const Form_Calendar = (function() {
 
     return {
         checkAvailability,
-        checkIfDayFullSlot
+        checkIfDayFullSlot,
+        req_get_off_days,
     }
 
 })();
@@ -452,7 +476,10 @@ const Form_Validation = (function() {
             isValid = false;
         }
 
-        if (email !== '' && !isValidEmail(email)) {
+        if (email === '') {
+            showError('email', 'Please enter your email address.');
+            isValid = false;
+        } else if (email !== '' && !isValidEmail(email)) {
             showError('email', 'Please enter a valid email address.');
             isValid = false;
         }

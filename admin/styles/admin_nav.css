@@ -83,6 +83,11 @@
     display: flex;
   }
 
+  .notif-div > div {
+    display: flex;
+    align-items: center;
+  }
+
   .notif-div > div >  i {
     cursor: pointer;
     font-size: 25px;
@@ -110,6 +115,7 @@
 
   .notif-container {
     color: var(--font-dark);
+    /* width: 100%; */
     width: 25em;
     padding: 0.5em 1em;
     position: absolute;
@@ -319,6 +325,7 @@
     padding: 15px 15px 15px 52px;
   }
   .bottom_content {
+    display: none;
     position: fixed;
     bottom: 60px;
     left: 0;
@@ -466,5 +473,15 @@
       .title-sidebar{
           display: block;
       }
-  
   }
+
+  @media screen and (max-width: 500px) {
+
+    .notif-container {
+      left: 50%;
+      transform: translateX(-70%);
+      top: 80px;
+      max-width
+    }
+}
+

@@ -4,7 +4,7 @@ const editBtn = document.getElementById('edit-btn');
 const removeBtn = document.getElementById('remove-btn');
 const selectAllBtn = document.getElementById('selectAll-btn');
 const deselectlBtn = document.getElementById('deselect-btn');
-
+const errorMsg = document.querySelector('#error-msg');
 var table = null;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -103,7 +103,7 @@ const Form = (function() {
     const updateDataBtn = document.getElementById('update-data-btn');
     const imageInput = document.getElementById('image-btn');
     const imagePreview = document.getElementById('image-preview');
-    const errorMsg = document.querySelector('.modall form h6');
+    const errorMsg = document.querySelector('#error-msg');
     const title = document.getElementById('title');
     const theme = document.getElementById('themes');
     const id_field = document.querySelector('input[type="hidden"]');

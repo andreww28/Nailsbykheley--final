@@ -1,5 +1,5 @@
 <?php
-include('../connection.php');
+include('../utils/connection.php');
 session_start();
 
 $response = array(); // Array to hold response data

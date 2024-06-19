@@ -174,10 +174,14 @@
     #check:checked ~ ul{
       left: 0;
     }
+  }
 
-    
 
-
+  @media (max-width: 484px){
+    .copyright-container {
+      flex-direction: column-reverse;
+      gap: 1em;
+    }
   }
 
 

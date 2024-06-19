@@ -26,37 +26,35 @@
                 <h5>Personal Information</h5>
                 <p>Enter your personal information correctly.</p>
                 <div>
-                    <label for="full-name">Full Name:</label>
+                    <label for="full-name">Full Name: *</label>
                     <input type="text" name="name" id="full-name" placeholder="e.g. Josep Racelis">
                 </div>
 
                 <div>
-                    <label for="address">Address:</label>
+                    <label for="address">Address: *</label>
                     <input type="text" name="address" id="address">
                 </div>
 
                 <div>
-                    <label for="email">Email Address:</label>
+                    <label for="email">Email Address: *</label>
                     <input type="text" name="email" id="email">
                 </div>
 
                 <div>
-                    <label for="mnumber">Mobile Number:</label>
+                    <label for="mnumber">Mobile Number: *</label>
                     <input type="tel" name="mnumber" id="mnumber" placeholder="(+63) 9xx xxxx xxx">
                 </div>
 
-                <div>
-                    <label for="payment">Payment Method</label>
-                    <select name="payment" id="payment">
-                        <option value="Soft-gel Extension">GCASH</option>
-                    </select>
+                <div class="payment-div">
+                    <p>Payment Method:</p>
+                    <p>GCASH</p>
                 </div>
             </div>
 
             <div class="form-two form-step">
                 <h5>Medical/Nail Condition</h5>
                 <div>
-                    <p>Is this your first time manicure/pedicure ?</p>
+                    <p>Is this your first time manicure/pedicure? * </p>
                     <div class="radio-div">
                         <div>
                             <input type="radio" name="isFirsttime" id="isFirsttimeYes" value="yes">
@@ -71,7 +69,7 @@
 
                 <div>
                     <p>Have you ever experience allergic reaction or irritation from any type of nail or skin
-                        product?</p>
+                        product? *</p>
                     <div class="radio-div">
                         <div>
                             <input type="radio" name="allergicText" id="allergicYes" value="yes">
@@ -83,14 +81,14 @@
                         </div>
                     </div>
                     <div class='specify-div'>
-                        <p>If yes, please specify:</p>
+                        <p>If yes, please specify: *</p>
                         <input type="text" id="allergicSpecify">
                     </div>
 
                 </div>
 
                 <div>
-                    <p>Do you take part in any hands-on hobbies or sports activities</p>
+                    <p>Do you take part in any hands-on hobbies or sports activities? *</p>
                     <div class="radio-div">
                         <div>
                             <input type="radio" name="sport" id="sportYes" value="yes">
@@ -102,7 +100,7 @@
                         </div>
                     </div>
                     <div class='specify-div'>
-                        <p>If yes, please specify:</p>
+                        <p>If yes, please specify: *</p>
                         <input type="text" id="sportSpecify">
                     </div>
 

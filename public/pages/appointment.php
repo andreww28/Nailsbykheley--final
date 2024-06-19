@@ -55,7 +55,7 @@ function getDisplay()
 
 <head>
     <meta charset="utf-8">
-    <title>NAILSBYKHELEY - ABOUT</title>
+    <title>NAILSBYKHELEY - APPOINTMENT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/nav.css">
@@ -77,9 +77,7 @@ function getDisplay()
         <section class="banner">
             <div class="banner-content">
                 <h2>Appointment</h2>
-                <p>Welcome to our booking page! To schedule your soft gel extension or removal service, please review
-                    and agree to our terms and conditions by clicking the button below. If you need assistance, call us
-                    at (+63)936 372 3865. </p>
+                <p>Ready for stunning nails? Reserve your soft gel appointment effortlessly.</p>
             </div>
         </section>
 
@@ -208,14 +206,16 @@ function getDisplay()
                     Payment
                 </summary>
                 <div>
-                    <p>A ₱100 down payment is required within 24 hours to confirm your appointment.</p>
+                    <p>A ₱100 down payment is required to process your appointment schedule.</p>
+                    <p>Please copy the reference number of your appointment and paste it as message when you send the
+                        100 peso down payment in GCASH.</p>
                     <div class="gcash-info">
                         <p>GCash Information:</p>
                         <div class="gcash-info-content">
-                            <img src="../assets/img/logo.jpg" alt="">
+                            <img src="../assets/img/qr.png" alt="">
                             <div class="info-gcash">
-                                <p>Name: <span class="bold">John Andrew San Victores</span></p>
-                                <p>Number: <span class="bold">09167003378</span></p>
+                                <p>Name: <span class="bold">Kheley</span></p>
+                                <p>Number: <span class="bold">936 372 3865</span></p>
                             </div>
                         </div>
                     </div>

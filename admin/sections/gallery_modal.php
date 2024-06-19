@@ -18,9 +18,9 @@
                         $theme_query = mysqli_query($conn, "SELECT * FROM themes");
                         while ($theme_row = mysqli_fetch_assoc($theme_query)) {
                             if ($theme_row['theme'] !== "All") { ?>
-                                <option value="<?php echo $theme_row['theme_id']; ?>">
-                                    <?php echo $theme_row['theme']; ?>
-                                </option>
+                        <option value="<?php echo $theme_row['theme_id']; ?>">
+                            <?php echo $theme_row['theme']; ?>
+                        </option>
                         <?php }
                         }
                         ?>
@@ -29,8 +29,11 @@
                 <div class="image-type">
                     <label for="img_type">Type:</label>
                     <div>
-                        <input type="radio" name="img_type" value="featured">Featured
-                        <input type="radio" name="img_type" value="normal">Normal
+                        <input type="radio" name="img_type" value="featured">
+                        <label for="f-radio">Featured</label>
+                        <input type="radio" name="img_type" value="normal">
+                        <label for="n-radio">Normal</label>
+
 
                     </div>
                 </div>

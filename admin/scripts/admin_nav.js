@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
     Sidebar.add_events();
 
     Notifications.set_notif_count();
+    
+    if(window.innerWidth < 768) {
+        document.querySelector('.sidebar').classList.add('close');  
+    }
 });
 
 
@@ -56,7 +60,7 @@ const Password = (function() {
         var confirmPass = document.querySelector("#confirm_pass");
     
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../utils/update_password.php', true);
+        xhr.open('POST', '../../api/update_password.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     
         xhr.onload = function() {
@@ -70,7 +74,7 @@ const Password = (function() {
                     }).then((result) => {
 
                     if (result.isConfirmed) {
-                        window.location.href = "../admin/login.php";
+                        window.location.href = "../pages/login.php";
                     }
                     });
             } else {
@@ -121,16 +125,14 @@ const Sidebar = (function() {
 const Navbar = (function() {
     const profile_container = document.querySelector('.profile-container');
     const bell_icon = document.querySelector('.notif-div > div');
+    const sidebar = document.querySelector('.sidebar');
 
     function profile_container_event() {
         document.querySelector('.dp-menu').classList.toggle('active');
     }
 
-    function bell_icon_event() {
-        document.querySelector('.notif-container').classList.toggle('active');
-    }
-
     function add_events() {
+        document.querySelector('#sidebarOpen').addEventListener('click', () => sidebar.classList.toggle('close'));
         profile_container.addEventListener('click', profile_container_event)
         bell_icon.addEventListener('click', Notifications.bell_icon_event)
         Notifications.add_events();
@@ -223,7 +225,7 @@ const Notifications = (function() {
 
     function get_ref_no_from_msg(title, msg) {
         const msg_arr = msg.split(" ");
-        const refNo = title === "Cancel Appointment" ? msg_arr[0] : msg_arr[msg_arr.length - 1].slice(0,-1).replace(/[\(\)]/g, '');
+        const refNo = title === "Appointment Cancellation" ? msg_arr[0] : msg_arr[msg_arr.length - 1].slice(0,-1).replace(/[\(\)]/g, '');
         return refNo;
     }
 
@@ -249,7 +251,7 @@ const Notifications = (function() {
                     </div>
                 
                     `
-            } else if(d.title === 'Cancel Appointment') {
+            } else if(d.title === 'Appointment Cancellation') {
                 notif_container.innerHTML += `
                     <div class="notif-item cancel ${d.read_status}" id="item${d.id}">
                         <i class="fas fa-user-minus"></i>

@@ -2,7 +2,30 @@
 include('../utils/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['date'])) {
+    if (isset($_POST['action']) && $_POST['action'] === "get_off_days") {
+
+
+        // Query to fetch date ranges
+        $sql = "SELECT from_date, to_date FROM off_days";
+        $result = mysqli_query($conn, $sql);
+
+        $dates = [];
+
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $current = strtotime($row["from_date"]);
+                $end = strtotime($row["to_date"]);
+                while ($current <= $end) {
+                    $dates[] = date("Y-m-d", $current);
+                    $current = strtotime("+1 day", $current);
+                }
+            }
+            sort($dates); // Sort the dates array
+        }
+
+        echo json_encode(['off_days' => $dates]);
+        exit();
+    } else if (isset($_POST['date'])) {
         $date = $_POST['date'];
 
         // Query to get all available times

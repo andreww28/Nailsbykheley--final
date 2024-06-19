@@ -17,6 +17,13 @@ const Init_APPT = (function() {
         return current_status;
     }
 
+    function mail_content(action) {
+        if(action === 'cancel') {
+            var subject =  'Appointmoent Cancellation - NAILSBYKHELEY';
+            var re
+        }
+    }
+
     return {
         set_current_status,
         get_current_status
@@ -217,7 +224,15 @@ const Request = (function() {
                         
                         table.rows('.selected').remove().draw(false);
                         Popup1.show_message(response.message, 'success');
+                        console.log(response.emails);
                         table.draw();
+
+                        console.log(response.data);
+
+                        
+                        if(action === 'delete_confirmed' || action === 'confirm_pending') {
+                            send_email(action, response.data);
+                        }
                     } else {
                         Popup1.show_message(response.message, "error");
                     }
@@ -246,6 +261,10 @@ const Request = (function() {
                         console.log(table.rows('.selected'));
                         table.rows('.selected').remove().draw(false);
                         Popup1.show_message(response.message, 'success');
+
+                        if(action === 'delete_confirmed' || action === 'confirm_pending') {
+                            send_email(action, response.data);
+                        }
                     } else {
                         Popup1.show_message(response.message, "error");
                     }
@@ -283,6 +302,39 @@ const Request = (function() {
     
             xhr.send(requestBody);
         });
+    }
+
+    function send_email(action,data) {
+        var data = JSON.stringify(data.filter(d => d.email !== ""));
+        
+
+        const requestBody = `action=send_from_admin&data=${data}&user_action=${action}`;
+        const xhr = new XMLHttpRequest();
+            xhr.open('POST', '../../api/send_email.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                console.log(response.message);
+                            } else {
+                                console.log(response.message);
+                            }
+                        } catch (e) {
+                            console.error('Error parsing JSON response:', e);
+                            alert('There was an error processing the response.');
+                        }
+                    } else {
+                        console.error('Error:', xhr.status);
+                        alert('There was an error with the request.');
+                    }
+                }
+            };
+
+            xhr.send(requestBody);
     }
 
     return {

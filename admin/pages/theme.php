@@ -26,7 +26,7 @@ $themes = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script> -->
     <title>Theme - ADMIN</title>
 </head>
 
@@ -41,21 +41,6 @@ $themes = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <span>New</span>
                 </button>
             </div>
-
-            <input id="datepicker" />
-            <script>
-                const picker = new easepick.create({
-                    element: document.getElementById('datepicker'),
-                    css: [
-                        'https://cdn.jsdelivr.net/npm/@easepick/core@1.2.1/dist/index.css',
-                        'https://cdn.jsdelivr.net/npm/@easepick/range-plugin@1.2.1/dist/index.css',
-                    ],
-                    plugins: ['RangePlugin'],
-                    RangePlugin: {
-                        tooltip: true,
-                    },
-                });
-            </script>
 
             <div class="table-wrapper">
 

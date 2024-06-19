@@ -97,13 +97,13 @@ button span, button i{
     gap: 1em;
 }
 
-.modall .modal-wrapper-gallery form div {
+.modall .modal-wrapper-gallery form > div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.modall .modal-wrapper-gallery form div label {
+.modall .modal-wrapper-gallery form > div label {
     font-size: var(--small);
 }
 
@@ -141,6 +141,15 @@ button span, button i{
     font-weight: 300;
 }
 
+
+.image-type div {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.image-type div > label {
+    margin-inline: 1em;
+}
 
 #image-btn {
     width: 0.1px;

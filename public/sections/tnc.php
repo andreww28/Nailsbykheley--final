@@ -11,6 +11,7 @@
         z-index: -999;
         opacity: 0;
         transform: scale(0);
+        padding: 1em;
     }
 
     .modal-tnc-container {
@@ -57,7 +58,7 @@
         flex-direction: column;
         gap: 0.5em;
         height: 100%;
-        max-height: 20em;
+        max-height: 23em;
         overflow-y: scroll;
     }
 

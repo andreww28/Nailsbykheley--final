@@ -19,7 +19,7 @@ $featured_item_gallery = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NAILSBYKHELEY - HOME</title>
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/nav.css">
     <link rel="stylesheet" href="../styles/index.css">
@@ -27,8 +27,7 @@ $featured_item_gallery = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 </head>
 
 <body>
@@ -67,21 +66,20 @@ $featured_item_gallery = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     <?php
     if (!empty($highlights)) { ?>
-    <section class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            <?php foreach ($highlights as $index => $highlight) {
+        <section class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <?php foreach ($highlights as $index => $highlight) {
 
                 ?>
-            <div class="swiper-slide"><img
-                    src="<?php echo "../../admin/assets/uploads/highlight/" . $highlight['image_path'] ?>"></div>
-            <?php
+                    <div class="swiper-slide"><img src="<?php echo "../../admin/assets/uploads/highlight/" . $highlight['image_path'] ?>"></div>
+                <?php
 
                 } ?>
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-    </section>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </section>
     <?php
     }
     ?>
@@ -90,26 +88,27 @@ $featured_item_gallery = mysqli_fetch_all($result, MYSQLI_ASSOC);
         <h2>Featured Works</h2>
         <?php
         if (!empty($featured_item_gallery)) { ?>
-        <section class="swiper featuredSwiper">
-            <div class="swiper-wrapper">
-                <?php foreach ($featured_item_gallery as $index => $item) {
+            <section class="swiper featuredSwiper">
+                <div class="swiper-wrapper">
+                    <?php foreach ($featured_item_gallery as $index => $item) {
 
                     ?>
-                <div class="swiper-slide"><img
-                        src="<?php echo "../../admin/assets/uploads/gallery/" . $item['image_path'] ?>"></div>
-                <?php
+                        <div class="swiper-slide"><img src="<?php echo "../../admin/assets/uploads/gallery/" . $item['image_path'] ?>"></div>
+                    <?php
 
                     } ?>
-            </div>
-            <!-- <div class="swiper-button-next"></div>
+                </div>
+                <!-- <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div> -->
-            <div class="swiper-pagination"></div>
-        </section>
+                <div class="swiper-pagination"></div>
+            </section>
         <?php
         }
         ?>
         <button class="view-more-gallery">View More</button>
     </section>
+
+
 
     <section class="LCard">
         <div class="img-container">
@@ -134,10 +133,7 @@ $featured_item_gallery = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
             <div class="map-div">
                 <!-- sample lang -->
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3871.8986614784308!2d121.60758207508788!3d13.964637192330304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTPCsDU3JzUyLjciTiAxMjHCsDM2JzM2LjYiRQ!5e0!3m2!1sen!2sph!4v1717567820699!5m2!1sen!2sph"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3871.8986614784308!2d121.60758207508788!3d13.964637192330304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTPCsDU3JzUyLjciTiAxMjHCsDM2JzM2LjYiRQ!5e0!3m2!1sen!2sph!4v1717567820699!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="contact-content">
                 <h2>Contact Us</h2>
@@ -149,7 +145,7 @@ $featured_item_gallery = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
                     <div>
                         <label>Subject: </label>
-                        <input type="text" name="subject" id="subject" placeholder=" Subject places" required>
+                        <input type="text" name="subject" id="subject" placeholder="" required>
                     </div>
 
                     <div>
@@ -187,51 +183,52 @@ $featured_item_gallery = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     <!-- Initialize Swiper -->
     <script>
-    var swiper = new Swiper(".mySwiper", {
-        spaceBetween: 30,
-        centeredSlides: true,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        // effect: 'cards'
-    });
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            // effect: 'cards'
+        });
 
-    var swiper2 = new Swiper(".featuredSwiper", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        coverflowEffect: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-        },
-    });
+        var swiper2 = new Swiper(".featuredSwiper", {
+            effect: `coverflow`,
+            loop: true,
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 80,
+                modifier: 1,
+                slideShadows: false,
+            },
+        });
 
-    var appointment_f_wrapper = document.querySelector('.a-container');
-    var appointment_f_box = document.querySelector('.form-box');
-    var appointment_btn = document.getElementById('appointment-btn');
 
-    appointment_btn.addEventListener("click", function() {
-        window.location.href = "./appointment.php";
-    });
 
-    document.querySelector('.view-more-gallery').addEventListener('click', () => window.location.href =
-        './gallery.php');
+        var appointment_f_wrapper = document.querySelector('.a-container');
+        var appointment_f_box = document.querySelector('.form-box');
+        var appointment_btn = document.getElementById('appointment-btn');
+
+        appointment_btn.addEventListener("click", function() {
+            window.location.href = "./appointment.php";
+        });
+
+        document.querySelector('.view-more-gallery').addEventListener('click', () => window.location.href =
+            './gallery.php');
     </script>
 
     <?php include('../sections/tnc.php') ?>
@@ -241,56 +238,56 @@ $featured_item_gallery = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-    const form = document.getElementById('contact-form');
-    const loading_c = document.querySelector('.loading-bg');
+        const form = document.getElementById('contact-form');
+        const loading_c = document.querySelector('.loading-bg');
 
-    form.addEventListener('submit', submitData);
+        form.addEventListener('submit', submitData);
 
-    function submitData(e) {
-        e.preventDefault();
-        loading_c.style.display = 'flex';
+        function submitData(e) {
+            e.preventDefault();
+            loading_c.style.display = 'flex';
 
-        // Ensure the form element is correctly referenced
-        const form = e.target;
-        const formData = new FormData(form);
-        formData.append('action', 'send_from_home');
+            // Ensure the form element is correctly referenced
+            const form = e.target;
+            const formData = new FormData(form);
+            formData.append('action', 'send_from_home');
 
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', '../../api/send_email.php', true);
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '../../api/send_email.php', true);
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    try {
-                        const response = JSON.parse(xhr.responseText);
-                        if (response.success) {
-                            document.querySelector('.loading-bg').style.display = 'none';
-                            console.log(loading_c.style.display);
-                            Swal.fire({
-                                position: "center",
-                                icon: 'success',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            form.reset();
-                        } else {
-                            alert(response.message);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                document.querySelector('.loading-bg').style.display = 'none';
+                                console.log(loading_c.style.display);
+                                Swal.fire({
+                                    position: "center",
+                                    icon: 'success',
+                                    title: response.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                form.reset();
+                            } else {
+                                alert(response.message);
+                            }
+                        } catch (e) {
+                            console.error('Error parsing JSON response:', e);
+                            alert('There was an error processing the response.');
                         }
-                    } catch (e) {
-                        console.error('Error parsing JSON response:', e);
-                        alert('There was an error processing the response.');
+                    } else {
+                        console.error('Error:', xhr.status);
+                        alert('There was an error with the request.');
                     }
-                } else {
-                    console.error('Error:', xhr.status);
-                    alert('There was an error with the request.');
                 }
-            }
-        };
+            };
 
-        xhr.send(formData);
-    }
+            xhr.send(formData);
+        }
     </script>
 </body>
 

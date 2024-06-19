@@ -7,6 +7,52 @@ session_regenerate_id(true);
 
 $response = array();
 
+function remove_conflicting_appointments($conn, $idsArray, $appointment_date, $start_time, $end_time)
+{
+    $conflicting_appointments = array();
+
+    // Escape and quote the variables for SQL query
+    $appointment_date = mysqli_real_escape_string($conn, $appointment_date);
+    $start_time = mysqli_real_escape_string($conn, $start_time);
+    $end_time = mysqli_real_escape_string($conn, $end_time);
+
+    // Initialize an empty array to store escaped IDs
+    $escapedIds = array();
+
+    // Escape each ID in the array
+    foreach ($idsArray as $id) {
+        $escapedIds[] = "'" . mysqli_real_escape_string($conn, $id) . "'";
+    }
+
+    // Convert the array of escaped IDs into a comma-separated string
+    $idsString = implode(',', $escapedIds);
+
+    // Query to find conflicting appointments
+    $sql = "SELECT referenceNum FROM appointments 
+            WHERE status = 'confirmed'
+            AND appointment_date = '$appointment_date'
+            AND (
+                (start_time <= '$start_time' AND end_time > '$start_time')
+                OR (start_time < '$end_time' AND end_time >= '$end_time')
+                OR (start_time >= '$start_time' AND end_time <= '$end_time')
+            )
+            ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $conflicting_appointments[] = $row['referenceNum'];
+        }
+        mysqli_free_result($result);
+    } else {
+        // Handle query error
+        echo "Error: " . mysqli_error($conn);
+    }
+
+    return $conflicting_appointments;
+}
+
 function get_string_ids($data_name, $conn)
 {
     $idsArray = json_decode($_POST[$data_name], true);
@@ -51,7 +97,6 @@ function generateSecureToken($length = 32)
 {
     return bin2hex(random_bytes($length));
 }
-
 
 
 function remove_multiple_data($action, $conn)
@@ -118,17 +163,100 @@ function update_status($action, $conn)
 
     $idsString = get_string_ids('ids', $conn);
 
+
+    if ($action === 'confirm_pending') {
+        $idsArray = explode(',', $idsString); // Convert $idsString back to array for manipulation
+
+        $conflicting_messages = array(); // Array to store messages for conflicting appointments
+
+        // Iterate through each appointment ID to check for conflicts
+        foreach ($idsArray as $appointmentId) {
+            $ref = mysqli_real_escape_string($conn, trim($appointmentId, '"'));
+            $sql = "SELECT appointment_date, start_time, end_time FROM appointments WHERE referenceNum = $appointmentId";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result && mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $appointment_date = $row['appointment_date'];
+                $start_time = $row['start_time'];
+                $end_time = $row['end_time'];
+
+                // Check for conflicting appointments for this specific appointment
+
+                $conflicting_appointments = remove_conflicting_appointments($conn, $idsArray, $appointment_date, $start_time, $end_time);
+
+                if (!empty($conflicting_appointments)) {
+                    // Prepare message for conflicting appointments
+                    $conflicting_message = "The selected appointment/s conflict with appointment " . implode(', ', $conflicting_appointments);
+
+                    // Store conflicting message for response
+                    $conflicting_messages[] = $conflicting_message;
+
+                    // Remove the conflicting appointment from $idsArray to avoid updating it
+                    $key = array_search($appointmentId, $idsArray);
+                    if ($key !== false) {
+                        unset($idsArray[$key]);
+                    }
+                }
+            }
+        }
+
+        if (!empty($conflicting_messages)) {
+            $response['success'] = false;
+            $response['message'] = implode('<br>', $conflicting_messages); // Join messages with line breaks for display
+            echo json_encode($response);
+            exit; // Exit script after sending response
+        }
+
+
+
+        // If no conflicts found, proceed with updating status
+        $idsString = implode(',', $idsArray); // Convert back to string for SQL query
+    }
+
     $sql = "UPDATE appointments SET status = '$new_status' WHERE status = '$old_status' AND referenceNum IN ($idsString)";
 
-    // Execute the query
     if (mysqli_query($conn, $sql)) {
-        // If deletion is successful
+        // If update is successful
         $response['success'] = true;
         $response['message'] = $success_msg;
     } else {
         // If an error occurred
         $response['success'] = false;
-        $response['message'] = "Failed to approve appointment.";
+        $response['message'] = "Failed to update appointment status.";
+    }
+
+
+    // Execute the query
+
+    $sql = "SELECT user_info.email
+        FROM user_info
+        INNER JOIN appointments ON user_info.userId = appointments.userId
+        WHERE appointments.referenceNum IN ($idsString)";
+
+    $sql = "SELECT a.*, ui.*, uc.* 
+    FROM appointments AS a
+    LEFT JOIN user_info AS ui ON a.userId = ui.userId
+    LEFT JOIN user_conditions AS uc ON a.conditionId = uc.conditionId
+    WHERE a.referenceNum IN ($idsString)";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        $emails = array();
+        $data = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $emails[] = $row['email'];
+            $data[] = $row;
+        }
+        // If emails are found, add them to the response array
+        if (!empty($emails)) {
+            $response['emails'] = $emails;
+        } else {
+            $response['emails'] = array(); // No emails found
+        }
+
+        $response['data'] = $data;
     }
 
     echo json_encode($response);
@@ -314,7 +442,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $query3 = "INSERT INTO appointments (referenceNum, userId, conditionId, appointment_date, start_time, end_time, service, status, verification_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt3 = mysqli_prepare($conn, $query3);
             mysqli_stmt_bind_param($stmt3, "siissssss", $referenceNumber, $userId, $conditionId, $appt_date, $start_time, $end_time, $service, $status, $verification_code);
-
             // 
 
 

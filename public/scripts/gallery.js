@@ -77,7 +77,7 @@ const Events = (function() {
     function search_event(e) {
         let val = e.target.value;
         let d;
-
+        console.log(data.gallery_items);
         if(val === "") {
             DOM_manipulate.set_gallery(data.gallery_items);
         }else {
