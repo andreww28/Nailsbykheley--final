@@ -94,9 +94,10 @@ if (isset($_POST['month'])) {
 
 
 
+// Secure input
+$status = mysqli_real_escape_string($conn, $_POST['c_t']);
 
-// Define your SQL query
-$status = $_POST['c_t'];
+// Prepare the SQL query
 $sql = "SELECT 
             appointments.referenceNum,
             user_info.fullName,
@@ -109,8 +110,10 @@ $sql = "SELECT
         INNER JOIN 
             user_info ON appointments.userId = user_info.userId
         WHERE
-            appointments.status = '$status'
-        ";
+            appointments.status = '$status'";
+
+// Debugging: Print query to check errors
+error_log($sql);
 
 // Execute the query
 $result = mysqli_query($conn, $sql);
@@ -120,45 +123,47 @@ $columns = array(
     0 => 'appointments.referenceNum',
     1 => 'user_info.fullName',
     2 => 'user_info.mnumber',
-    3 => 'appointments.appointment_date', // Use 'theme' instead of 'theme_id' for display
+    3 => 'appointments.appointment_date',
     4 => 'time',
     5 => 'appointments.service',
 );
 
-if (isset($_POST['search']['value']) && $_POST['search']['value'] != '') {
-    $search_value = $_POST['search']['value'];
-    $sql .= " AND (appointments.referenceNum LIKE '%" . $search_value . "%'";
-    $sql .= " OR user_info.fullName LIKE '%" . $search_value . "%')";
+// Apply search filter
+if (!empty($_POST['search']['value'])) {
+    $search_value = mysqli_real_escape_string($conn, $_POST['search']['value']);
+    $sql .= " AND (appointments.referenceNum LIKE '%$search_value%' OR user_info.fullName LIKE '%$search_value%')";
 }
 
+// Apply date filter
 if (!empty($_POST['registered_from']) && !empty($_POST['registered_to'])) {
-    $sql .= "AND appointment_date BETWEEN '{$_POST['registered_from']}' AND '{$_POST['registered_to']}' ";
+    $from = mysqli_real_escape_string($conn, $_POST['registered_from']);
+    $to = mysqli_real_escape_string($conn, $_POST['registered_to']);
+    $sql .= " AND appointments.appointment_date BETWEEN '$from' AND '$to'";
 }
 
-
+// Apply sorting
 if (isset($_POST['order'])) {
-    $column_name = $_POST['order'][0]['column'];
-    $order = $_POST['order'][0]['dir'];
+    $column_index = (int) $_POST['order'][0]['column']; // Ensure it's an integer
+    $order_dir = $_POST['order'][0]['dir'] === 'asc' ? 'ASC' : 'DESC'; // Validate input
 
-    $sql .= " ORDER BY " . $columns[$column_name] . " " . $order;
+    $sql .= " ORDER BY " . $columns[$column_index] . " " . $order_dir;
 } else {
-    $sql .= " ORDER BY appointments.referenceNum DESC"; // Default sorting if not provided
+    $sql .= " ORDER BY appointments.referenceNum DESC"; // Default sorting
 }
 
+// Apply pagination
 if ($_POST['length'] != -1) {
-    $start = $_POST['start'];
-    $length = $_POST['length'];
-    $sql .= " LIMIT " . $length . ", " . $start;
+    $start = (int) $_POST['start'];
+    $length = (int) $_POST['length'];
+    $sql .= " LIMIT $start, $length";
 }
 
 $query = mysqli_query($conn, $sql);
 $count_rows = mysqli_num_rows($query);
 $data = array();
 
-// Fetch data and format it
+// Fetch data
 while ($row = mysqli_fetch_assoc($query)) {
-    // Create button IDs based on reference number
-    // Add data to sub-array
     $sub_array = array(
         $row["referenceNum"],
         $row["fullName"],
@@ -167,20 +172,19 @@ while ($row = mysqli_fetch_assoc($query)) {
         str_replace(' ', '', $row["time"]),
         $row["service"]
     );
-
-    // Push sub-array to data array
     $data[] = $sub_array;
 }
-
 
 $output = array(
     'draw' => intval($_POST['draw']),
     'recordsTotal' => $total_all_rows,
-    'recordsFiltered' => $total_all_rows,
+    'recordsFiltered' => $count_rows,
     'data' => $data,
+    'sql' => $sql
 );
 
 echo json_encode($output);
+
 
 // Close connection
 // mysqli_close($conn);

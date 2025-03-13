@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     Form_SetUp.reset_form();
 
-    console.log('hello')
     Submit_Popup.hide();
 
 })
@@ -310,6 +309,30 @@ const Form_Calendar = (function() {
         req_get_off_days,
     }
 
+})();
+
+
+const Submit_Popup = (function() {
+    var container = document.querySelector('.submit-popup');
+
+    function show() {
+        container.style.display = 'flex';
+    }
+
+    function hide() {
+        if(container) {
+            container.style.display = 'none';
+        }
+    }
+
+    function set_important_text(ref, verif) {
+        imp_text[0].textContent = ref;
+        imp_text[1].textContent = verif;
+    }
+
+    return {
+        show, hide, set_important_text
+    }
 })();
 
 

@@ -1,4 +1,7 @@
 <footer>
+    <div class="disclaimer" style="margin:auto">
+        <p><span style="color:red; font-style:bold">Disclaimer: </span> This project was developed as part of an academic requirement and is showcased for portfolio purposes only.</p>
+    </div>
     <div class="upper-content">
         <div class="menu-container">
             <h6>MENU</h6>

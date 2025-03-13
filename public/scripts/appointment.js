@@ -470,28 +470,6 @@ const Request = (function() {
 })();
 
 
-const Submit_Popup = (function() {
-    var container = document.querySelector('.submit-popup');
-
-    function show() {
-        container.style.display = 'flex';
-    }
-
-    function hide() {
-        container.style.display = 'none';
-    }
-
-    function set_important_text(ref, verif) {
-        imp_text[0].textContent = ref;
-        imp_text[1].textContent = verif;
-    }
-
-    return {
-        show, hide, set_important_text
-    }
-})();
-
-
 const PopUp = (function() {
     function showMessage(msg, icon) {
         Swal.fire({

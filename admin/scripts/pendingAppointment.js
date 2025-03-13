@@ -4,7 +4,6 @@ var current_status = ""
 document.addEventListener("DOMContentLoaded", function() {
     Custom_Controls.addEvents();
     // Table_functions.addEvents(table);
-
 });
 
 
